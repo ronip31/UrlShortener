@@ -1,0 +1,10 @@
+# Define a imagem base para o container do PostgreSQL
+FROM postgres:latest
+
+# Define as variáveis de ambiente do PostgreSQL
+ENV POSTGRES_USER=admin
+ENV POSTGRES_PASSWORD=admin
+ENV POSTGRES_DB=url_shortener
+
+# Copia o arquivo init.sql para o diretório de inicialização do PostgreSQL
+COPY init.sql /docker-entrypoint-initdb.d/

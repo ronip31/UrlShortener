@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  postgres:
+    build:
+      context: .
+      dockerfile: Dockerfile-postgres
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=url_shortener
+    networks:
+      - url_shortener_network
+
+  redis:
+    image: redis:latest
+    networks:
+      - url_shortener_network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile-app
+    ports:
+      - 8081:5000
+    networks:
+      - url_shortener_network
+
+networks:
+  url_shortener_network:
+    external:
+      name: url_shortener_network

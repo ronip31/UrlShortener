@@ -1,0 +1,14 @@
+# Define a imagem base para o container da aplicação Flask
+FROM python:3.9
+
+# Define o diretório de trabalho dentro do contêiner
+WORKDIR /app
+
+# Copia os arquivos de código-fonte para o diretório de trabalho
+COPY . /app
+
+# Instala as dependências do projeto
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expõe a porta em que a aplicação está sendo executada
+EXPOSE 5000
